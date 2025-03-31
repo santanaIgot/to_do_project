@@ -30,16 +30,26 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
+   
 }
 
 
 .taskCount{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    width: 100%;
+    width: 58%;
+    gap: 40em;
+    border-bottom: 1px solid gray;
+    height: 7rem;
+
+}
+
+
+.border{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
 }
 
 
@@ -51,4 +61,38 @@
     font-size: 14px;
     font-style: normal;
     font-weight:700 ;
+}
+
+.img{
+    width: 56px;
+    height: 56px;
+}
+
+.taskEmpty{
+    display: flex;
+    flex-direction: column;
+    padding: 64px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 8px;
+    
+    max-width: 100%; 
+    margin: 0 auto;
+}
+
+
+
+
+.p{
+    color: var(--gray-300);
+    color: var(--Gray-300, #808080);
+    text-align: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 22.4px */
+   
 }
