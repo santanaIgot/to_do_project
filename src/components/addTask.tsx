@@ -1,46 +1,60 @@
-import { useState } from 'react'
-import styles from './addTask.module.css'
-import { ChangeEvent } from 'react';
+import { useState, ChangeEvent } from "react";
+import styles from "./addTask.module.css";
+import { TaskItem } from "./taskItem";
 
+interface TaskType {
+  id: number;
+  content: string;
+}
 
 export function AddTask() {
-    const [task, setTask ] = useState('');
-    const [tasks, setTasks ] = useState(['']);
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [countTask, setCountTask] = useState(0);
 
-    function handleAddTask() { 
-        
-        setTasks([...tasks, task]);
-        //apos adicionar 
-        //estado que armazena tarefas 
-        setTask('');
-    }
+  function handleAddTask() {
+    if (task.trim() === "") return; // Evita adicionar tarefas vazias
 
-    function handleNewAddTask(event:ChangeEvent<HTMLTextAreaElement>) {
-        console.log('teste');
+    const newTask: TaskType = {
+      id: Date.now(), // Usa timestamp como ID único
+      content: task,
+    };
 
-        setTask(event.target.value);
-        
-    }
-    return(
-       <>
-        <div className={styles.newTask}>
-            <textarea 
-                className={styles.input} 
-                placeholder='ADICIONE UMA NOVA TAREFA'
-                value={task}
-                onChange={handleNewAddTask}
-            />
-            <button onClick={handleAddTask} className={styles.button}>criar nova tarefa</button>
+    setTasks([...tasks, newTask]);
+    setTask(""); // Limpa o input
+    setCountTask(countTask + 1);
+  }
+
+  function handleNewAddTask(event: ChangeEvent<HTMLTextAreaElement>) {
+    setTask(event.target.value);
+  }
+
+  return (
+    <>
+      <div className={styles.newTask}>
+        <textarea
+          className={styles.input}
+          placeholder="ADICIONE UMA NOVA TAREFA"
+          value={task}
+          onChange={handleNewAddTask}
+        />
+        <button onClick={handleAddTask} className={styles.button}>
+          Criar nova tarefa
+        </button>
+      </div>
+
+      <div className={styles.task}>
+        <div className={styles.taskCount}>
+          <p className={styles.created}>
+            Tarefas criadas <span>{countTask}</span>
+          </p>
+          <p className={styles.created}>Concluídas</p>
         </div>
 
-        <div className="">
-            {
-                tasks.map( (event, i) => {
-                    return <h1 key={i}>{event}</h1>
-                })
-            }
-        </div>
-       </>
-            
-    )
+        {tasks.map((task) => (
+          <TaskItem key={task.id} content={task.content} />
+        ))}
+      </div>
+    </>
+  );
 }
