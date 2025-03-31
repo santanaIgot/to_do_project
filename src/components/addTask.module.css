@@ -25,3 +25,30 @@
     border-radius: 8px;
     background: var(--blue);
 }
+
+.task{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+
+.taskCount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+}
+
+
+.created{
+    text-align: center;
+    flex: 1;
+    color: var(--blue);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight:700 ;
+}
